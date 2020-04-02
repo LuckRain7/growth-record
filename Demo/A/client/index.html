@@ -1,0 +1,67 @@
+<!--
+ * @Description:  
+ * @Author: LuckRain7
+ * @Date: 2020-04-02 16:17:10
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大图上传</title>
+</head>
+
+<body>
+    <input type="file" id="fileInp" accept="image/*">
+    <br>
+    <img src="" alt="" id="serverImg">
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.13.0/js/md5.min.js"></script>
+    <script src="./ajax.js"></script>
+    <script>
+        let limitType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'], limitMaxSize = 100 * 2014;
+        console.log(fileInp);
+
+        fileInp.onchange = async function () {
+            let file = fileInp.files[0]
+            console.log(file);
+            if (!file) return
+
+            // 对文件类型进行限制
+            if (!limitType.includes(file.type)) {
+                alert('上传格式不正确')
+                fileInp.value = ''
+                return
+            }
+
+            // 对文件大小进行限制
+            if (file.size > limitMaxSize) {
+                alert('最大只能上传100KB')
+                fileInp.value = ''
+                return
+            }
+
+            // 生成上传数据
+            let formData = new FormData()
+            // 默认 Content-Type：mutilpart/form-data
+            formData.append('chunk', file)
+            formData.append('filename', $formatFileName(file.name).filename)
+
+            // 上传
+            let result = await $ajax({
+                url: 'http://127.0.0.1:5678/single',
+                data: formData,
+            })
+
+            // 接受返回的图片地址
+            if (result.code == 0) {
+                serverImg.src = result.path
+            }
+
+        }
+    </script>
+</body>
+
+</html>

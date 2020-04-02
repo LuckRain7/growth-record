@@ -1,0 +1,71 @@
+<!--
+ * @Description:  
+ * @Author: LuckRain7
+ * @Date: 2020-04-02 22:23:03
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大图上传</title>
+</head>
+
+<body>
+    <input type="file" id="fileInp">
+    <span id="progress">0%</span>
+    <br>
+    <img src="" alt="" id="serverImg">
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.13.0/js/md5.min.js"></script>
+    <script src="./ajax.js"></script>
+    <script>
+
+        let _data = new Proxy({ total: 0 }, {
+            set(target, key, value) {
+                target[key] = value
+                if (_data.total >= 100) {
+                    progress.innerHTML = '上传成功'
+                    return
+                }
+                progress.innerHTML = `${_data.total}%`
+            }
+        })
+
+        fileInp.onchange = async function () {
+            let file = fileInp.files[0]
+            console.log(file);
+            if (!file) return
+
+            progress.innerHTML = '0%'
+            // 生成上传数据
+            let formData = new FormData()
+            // 默认 Content-Type：mutilpart/form-data
+            formData.append('chunk', file)
+            formData.append('filename', $formatFileName(file.name).filename)
+
+            // 上传
+            let result = await $ajax({
+                url: 'http://127.0.0.1:5678/single',
+                data: formData,
+                progress: ev => {
+                    // ev.loaded    //已上传大小
+                    // ev.total     //上传总大小
+                    _data.total = Math.ceil(ev.loaded / ev.total * 100)
+                }
+            })
+
+            // 接受返回的图片地址
+            if (result.code == 0) {
+                serverImg.src = result.path
+            }
+
+        }
+    </script>
+</body>
+
+</html>

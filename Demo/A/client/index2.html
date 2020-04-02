@@ -1,0 +1,81 @@
+<!--
+ * @Description:  base64编码方式
+ * @Author: LuckRain7
+ * @Date: 2020-04-02 17:55:43
+ -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大图上传</title>
+</head>
+
+<body>
+    <input type="file" id="fileInp" accept="image/*">
+    <br>
+    <img src="" alt="" id="serverImg">
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.13.0/js/md5.min.js"></script>
+    <script src="./ajax.js"></script>
+    <script>
+
+
+        let limitType = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'], limitMaxSize = 100 * 2014;
+        console.log(fileInp);
+
+        // 将文件转换为base64编码
+        function convertBase64(file) {
+            return new Promise((resolve, reject) => {
+                let fileRead = new FileReader()
+                fileRead.readAsDataURL(file)
+                fileRead.onload = ev => {
+                    resolve(ev.target.result)
+                }
+            })
+        }
+
+        fileInp.onchange = async function () {
+            let file = fileInp.files[0]
+            if (!file) return
+
+            // 对文件类型进行限制
+            if (!limitType.includes(file.type)) {
+                alert('上传格式不正确')
+                fileInp.value = ''
+                return
+            }
+
+            // 对文件大小进行限制
+            if (file.size > limitMaxSize) {
+                alert('最大只能上传100KB')
+                fileInp.value = ''
+                return
+            }
+
+            // 转换为base64编码
+            let base64 = await convertBase64(file)
+
+            // 上传
+            let result = await $ajax({
+                url: 'http://127.0.0.1:5678/single2',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: `chunk=${encodeURIComponent(base64)}&filename=${$formatFileName(file.name).filename}`,
+            })
+
+            // 接受返回的图片地址
+            if (result.code == 0) {
+                serverImg.src = result.path
+            }
+
+        }
+    </script>
+</body>
+
+</html>

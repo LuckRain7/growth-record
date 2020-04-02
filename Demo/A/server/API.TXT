@@ -1,0 +1,49 @@
+﻿1.上传单张图片（FormData）
+URL: /single
+METHOD: post
+PARAMS: [FormData]
+	chunk:文件对象
+	filename:文件名（HASH+后缀）
+RETURN: [JSON]
+	{
+		code:0, 状态 0成功 1失败
+		codeText:'', 状态描述
+		path:'' 上传图片的服务器地址
+	}
+
+2.上传单张图片（BASE64）
+URL: /single2
+METHOD: post
+PARAMS: [application/x-www-form-urlencoded]
+	chunk:文件的BASE64（防止乱码需要encodeURIComponent编码）
+	filename:文件名（HASH+后缀）
+RETURN: [JSON]
+	{
+		code:0, 状态 0成功 1失败
+		codeText:'', 状态描述
+		path:'' 上传图片的服务器地址
+	}
+
+3.上传图片切片
+URL: /chunk
+METHOD: post
+PARAMS: [FormData]
+	chunk:文件切片
+	filename:文件名（HASH + - + 切片号 + 后缀）
+RETURN: [JSON]
+	{
+		code:0, 状态 0成功 1失败
+		codeText:'', 状态描述
+	}
+
+4.合并上传的图片切片
+URL: /merge
+METHOD: post
+PARAMS: [application/x-www-form-urlencoded]
+	filename:文件名 （HASH + 后缀）
+RETURN: [JSON]
+	{
+		code:0, 状态 0成功 1失败
+		codeText:'', 状态描述
+		path:'' 上传图片的服务器地址
+	}

@@ -1,0 +1,103 @@
+<!--
+ * @Description:   切片上传
+ * @Author: LuckRain7
+ * @Date: 2020-04-02 20:41:27
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切片上传</title>
+</head>
+
+<body>
+    <input type="file" id="fileInp" accept="image/*">
+    <span id="progress"></span>
+    <br>
+    <img src="" alt="" id="serverImg">
+
+    <script src="https://cdn.bootcss.com/blueimp-md5/2.13.0/js/md5.min.js"></script>
+    <script src="./ajax.js"></script>
+    <script>
+
+        let _data = new Proxy({ total: 0 }, {
+            set(target, key, value) {
+                target[key] = value
+                if (_data.total >= 100) {
+                    progress.innerHTML = '上传成功'
+                    return
+                }
+                progress.innerHTML = `${_data.total}%`
+            }
+        })
+
+
+        fileInp.onchange = async function () {
+            let file = fileInp.files[0]
+            if (!file) return
+            progress.innerHTML = '0%'
+            // 把一个文件切成5个切片（可以固定切片数据，或者切片大小）
+            let partSize = file.size / 5,
+                cur = 0,
+                i = 0,
+                partList = [],
+                { hash,
+                    suffix,
+                    filename } = $formatFileName(file.name)
+
+            while (i < 5) {
+
+                partList.push({
+                    chunk: file.slice(cur, cur + partSize),
+                    filename: `${hash}-${i}.${filename}`
+                })
+                cur += partSize
+                i++
+            }
+
+            // 并发切片请求
+            partList = partList.map(async item => {
+
+                let formData = new FormData()
+                formData.append('chunk', item.chunk)
+                formData.append('filename', item.filename)
+
+                return $ajax({
+                    url: 'http://127.0.0.1:5678/chunk',
+                    data: formData
+                }).then(result => {
+
+                    if (result.code === 0) {
+                        _data.total += 20
+                        return Promise.resolve(result)
+                    }
+
+                    return Promise.reject(result)
+                })
+            })
+
+            // 合并发送请求
+            await Promise.all(partList)
+
+            // 发送合并请求
+            let result = await $ajax({
+                url: 'http://127.0.0.1:5678/merge',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: `filename=${filename}`,
+            })
+
+            // 接受返回的图片地址
+            if (result.code == 0) {
+                serverImg.src = result.path
+            }
+
+        }
+    </script>
+</body>
+
+</html>
