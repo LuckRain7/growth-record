@@ -1,5 +1,5 @@
 /*
- *  Description:
+ *  Description: ajax请求代码  及 文件名封装函数
  *  Author: LuckRain7
  *  Date: 2020-04-02 16:28:52
  */
