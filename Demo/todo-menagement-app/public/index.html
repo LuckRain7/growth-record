@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <!-- REM COMPUTED -->
+  <script>
+    ~function () {
+      function computed() {
+        let HTML = document.documentElement,
+          deviceW = HTML.clientWidth, //页面宽度
+          designW = 750, //设计稿宽度
+          ratio = deviceW / designW * 100 //1个rem是多少px
+
+        if (deviceW >= 410) {
+          ratio = 410 / designW * 100
+        }
+
+        HTML.style.fontSize = ratio + 'px'
+
+      }
+      computed()
+      window.addEventListener('resize', computed)
+    }();
+  </script>
+
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+
+</html>
