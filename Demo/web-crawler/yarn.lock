@@ -69,6 +69,11 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+bignumber.js@9.0.0:
+  version "9.0.0"
+  resolved "https://registry.npm.taobao.org/bignumber.js/download/bignumber.js-9.0.0.tgz#805880f84a329b5eac6e7cb6f8274b6d82bdf075"
+  integrity sha1-gFiA+Eoym16sbny2+CdLbYK98HU=
+
 body-parser@1.19.0, body-parser@^1.19.0:
   version "1.19.0"
   resolved "https://registry.npm.taobao.org/body-parser/download/body-parser-1.19.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fbody-parser%2Fdownload%2Fbody-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
@@ -614,6 +619,16 @@ multer@^1.4.2:
     type-is "^1.6.4"
     xtend "^4.0.0"
 
+mysql@^2.18.1:
+  version "2.18.1"
+  resolved "https://registry.npm.taobao.org/mysql/download/mysql-2.18.1.tgz#2254143855c5a8c73825e4522baf2ea021766717"
+  integrity sha1-IlQUOFXFqMc4JeRSK68uoCF2Zxc=
+  dependencies:
+    bignumber.js "9.0.0"
+    readable-stream "2.3.7"
+    safe-buffer "5.1.2"
+    sqlstring "2.3.1"
+
 negotiator@0.6.2:
   version "0.6.2"
   resolved "https://registry.npm.taobao.org/negotiator/download/negotiator-0.6.2.tgz#feacf7ccf525a77ae9634436a64883ffeca346fb"
@@ -723,7 +738,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@^2.2.2:
+readable-stream@2.3.7, readable-stream@^2.2.2:
   version "2.3.7"
   resolved "https://registry.npm.taobao.org/readable-stream/download/readable-stream-2.3.7.tgz#1eca1cf711aef814c04f62252a36a62f6cb23b57"
   integrity sha1-Hsoc9xGu+BTAT2IlKjamL2yyO1c=
@@ -819,6 +834,11 @@ setprototypeof@1.1.1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/setprototypeof/download/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha1-fpWsskqpL1iF4KvvW6ExMw1K5oM=
+
+sqlstring@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.npm.taobao.org/sqlstring/download/sqlstring-2.3.1.tgz#475393ff9e91479aea62dcaf0ca3d14983a7fb40"
+  integrity sha1-R1OT/56RR5rqYtyvDKPRSYOn+0A=
 
 sshpk@^1.7.0:
   version "1.16.1"
