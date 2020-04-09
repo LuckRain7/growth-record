@@ -1,5 +1,9 @@
 记录自己的学过的东西，留作纪念！可能有一天就会与前端别离 🌟🌟🌟🌟🌟
 
+- [[2020-04-09] vue-image-cropper 头像裁剪组件（计划开源）](https://github.com/LuckRain7/growth-record/tree/master/Demo/vue-image-cropper)
+
+- [[2020-04-08] loading 动画](https://github.com/LuckRain7/growth-record/tree/master/Demo/animation/loading)
+
 - [[2020-04-07] Node 爬虫（request、cheerio）](https://github.com/LuckRain7/growth-record/tree/master/Demo/web-crawler)
 
 - [[2020-04-06] Webhooks 代码生成器（Koa + Nuxt） ](https://github.com/LuckRain7/webhooks-server-generator)
