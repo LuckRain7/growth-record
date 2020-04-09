@@ -1,0 +1,123 @@
+<!--
+ * @Description:  
+ * @Author: LuckRain7
+ * @Date: 2020-04-07 20:43:14
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="css">
+        .loadingFour {
+            width: 150px;
+            height: 15px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+
+        .loadingFour span {
+            display: inline-block;
+            width: 15px;
+            height: 100%;
+            margin-right: 5px;
+            background: lightgreen;
+            -webkit-animation: load 1.04s ease infinite;
+        }
+
+        .loadingFour span:last-child {
+            margin-right: 0px;
+        }
+
+        @-webkit-keyframes load {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .loadingFour span:nth-child(1) {
+            -webkit-animation-delay: 0.13s;
+        }
+
+        .loadingFour span:nth-child(2) {
+            -webkit-animation-delay: 0.26s;
+        }
+
+        .loadingFour span:nth-child(3) {
+            -webkit-animation-delay: 0.39s;
+        }
+
+        .loadingFour span:nth-child(4) {
+            -webkit-animation-delay: 0.52s;
+        }
+
+        .loadingFour span:nth-child(5) {
+            -webkit-animation-delay: 0.65s;
+        }
+
+        .loadingTwo {
+            width: 150px;
+            height: 4px;
+            border-radius: 2px;
+            margin: 0 auto;
+            margin-top: 100px;
+            position: relative;
+            background: lightgreen;
+            -webkit-animation: changeBgColor 1.04s ease-in infinite alternate;
+            animation: changeBgColor 1.04s ease-in infinite alternate;
+        }
+
+        .loadingTwo span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: lightgreen;
+            position: absolute;
+            margin-top: -7px;
+            margin-left: -8px;
+            -webkit-animation: changePosition 1.04s ease-in infinite alternate;
+            animation: changePosition 1.04s ease-in infinite alternate;
+        }
+
+        @-webkit-keyframes changeBgColor {
+            0% {
+                background: lightgreen;
+            }
+
+            100% {
+                background: lightblue;
+            }
+        }
+
+        @-webkit-keyframes changePosition {
+            0% {
+                background: lightgreen;
+            }
+
+            100% {
+                margin-left: 142px;
+                background: lightblue;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loadingFour">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+
+</html>
