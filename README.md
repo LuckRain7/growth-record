@@ -2,7 +2,7 @@
 
 - [[2020-04-11] TypeScript 学习](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript)
 
-- [[2020-04-09] vue-image-cropper 头像裁剪组件（计划开源）](https://github.com/LuckRain7/growth-record/tree/master/Demo/vue-image-cropper)
+- [[2020-04-09] vue-image-cropper 头像裁剪组件（计划开源）](https://github.com/LuckRain7/vue-image-cropper-simple)
 
 - [[2020-04-08] loading 动画](https://github.com/LuckRain7/growth-record/tree/master/Demo/animation/loading)
 
@@ -17,3 +17,4 @@
 - [[2020-04-03] 待办事件 APP ](https://github.com/LuckRain7/growth-record/tree/master/Demo/todo-menagement-app)
 
 - [[2020-04-02] 文件上传（FormData，base64，切片上传） ](https://github.com/LuckRain7/growth-record/tree/master/Demo/file-upload)
+

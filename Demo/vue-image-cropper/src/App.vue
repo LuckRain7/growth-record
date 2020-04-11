@@ -6,25 +6,32 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" @click="go" />
-    <image-cropper :isVisible.sync="isVisible"></image-cropper>
+    <image-cropper
+      :isVisible.sync="isVisible"
+      model="fromData"
+      @transmitImageData="transmitImageData"
+    ></image-cropper>
   </div>
 </template>
 
 <script>
-import ImageCropper from "./lib/vue-image-cropper/vue-image-cropper.vue";
+import ImageCropper from "vue-image-cropper-simple";
 export default {
   name: "App",
   data() {
     return {
-      isVisible: true,
+      isVisible: true
     };
   },
   methods: {
     go() {
       this.isVisible = !this.isVisible;
     },
+    transmitImageData(e) {
+      console.log(e);
+    }
   },
-  components: { ImageCropper },
+  components: { ImageCropper }
 };
 </script>
 

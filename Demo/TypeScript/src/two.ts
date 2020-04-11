@@ -141,21 +141,24 @@ axios('/login', {
 
 
 
-/*
+
 // 定义类接口(行为的抽象)
 interface Animal {
-  name: string;
-  eat(str: string): void;
+    name: string;
+    eat(str: string): void;
 }
 
 class Dog implements Animal {
-  name: string;
-  constructor(n: string) {
-      this.name = n;
-  }
-  eat() {
-      console.log(123);
-  }
+    name: string;
+    constructor(n: string) {
+        this.name = n;
+    }
+    eat() {
+        console.log(123);
+    }
 }
 
-*/
+
+
+
+
