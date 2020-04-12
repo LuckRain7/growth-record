@@ -1,8 +1,10 @@
 记录自己的学过的东西，留作纪念！可能有一天就会与前端别离 🌟🌟🌟🌟🌟
 
-- [[2020-04-11] TypeScript 学习](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript)
+- [[2020-04-12] TypeScript + Vue (try)](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript/select-ui)
 
-- [[2020-04-09] vue-image-cropper 头像裁剪组件（计划开源）](https://github.com/LuckRain7/vue-image-cropper-simple)
+- [[2020-04-11] TypeScript 学习](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript/basic)
+
+- [[2020-04-09/10] vue-image-cropper 头像裁剪组件（计划开源）](https://github.com/LuckRain7/vue-image-cropper-simple)
 
 - [[2020-04-08] loading 动画](https://github.com/LuckRain7/growth-record/tree/master/Demo/animation/loading)
 
