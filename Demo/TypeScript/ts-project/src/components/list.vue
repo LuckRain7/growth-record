@@ -7,9 +7,18 @@
   <div class="List">
     <div>我是列表</div>
 
-    <!-- <section v-for="(item, index) in datasource" :key="index">
+    <section v-for="(item, index) in datasource" :key="index">
       {{ item.title }}
-    </section> -->
+      <no-pic v-if="item.type === 'no-pic'" :item="item">
+        {{ item.title }}
+      </no-pic>
+      <one-pic v-if="item.type === 'one-pic'" :item="item">
+        {{ item.title }}
+      </one-pic>
+      <there-pic v-if="item.type === 'there-pic'" :item="item"
+        >{{ item.title }}
+      </there-pic>
+    </section>
     <!-- 进行组件判断 选取对应的组件进行加载 -->
     <component
       v-for="(item, index) in datasource"
@@ -27,7 +36,7 @@ import { Vue, Component, Prop } from "vue-property-decorator";
 // import { scrollFy } from "../utils/decorators";
 
 @Component({
-  components: { ...getAllComponents() }
+  components: { ...getAllComponents() },
 })
 // @scrollFy
 export default class List extends Vue {

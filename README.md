@@ -1,6 +1,8 @@
 记录自己的学过的东西，留作纪念！可能有一天就会与前端别离 🌟🌟🌟🌟🌟
 
-- [[2020-04-13] TypeScript + Vue (try)](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript/ts-project)
+- [[2020-04-15/16] Hexo](https://github.com/LuckRain7/blog)
+
+- [[2020-04-13/14] TypeScript + Vue (项目实战)](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript/ts-project)
 
 - [[2020-04-12] TypeScript + Vue (try)](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript/select-ui)
 
