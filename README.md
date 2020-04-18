@@ -1,6 +1,6 @@
 记录自己的学过的东西，留作纪念！可能有一天就会与前端别离 🌟🌟🌟🌟🌟
 
-- [[2020-04-17] VuePress 自动目录生成器（计划开源）](https://github.com/LuckRain7/growth-record/tree/master/Demo/node-fs)
+- [[2020-04-17/18] VuePress 自动目录生成器（计划开源）](https://github.com/LuckRain7/growth-record/tree/master/Demo/node-fs)
 
 - [[2020-04-15/16] Hexo](https://github.com/LuckRain7/blog)
 
