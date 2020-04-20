@@ -1,32 +1,53 @@
-new Promise 里边的代码是正常执行的
-
-![image-20200419202803102](C:\Users\ZHCZ\Desktop\growth-record\Demo\2020-04-19\img\image-20200419202803102.png)
-
-微任务包括 `process.nextTick` ，`promise` ，`MutationObserver`，其中 `process.nextTick` 为 Node 独有。
-
-宏任务包括 `script` ， `setTimeout` ，`setInterval` ，`setImmediate` ，`I/O` ，`UI rendering`。
-
-这里很多人会有个误区，认为微任务快于宏任务，其实是错误的。因为宏任务中包括了 `script` ，浏览器会先执行一个宏任务，接下来有异步代码的话才会先执行微任务。 
+#  一道关于JavaScript 代码执行顺序的面试题解析
 
 
 
-#### (5) Event Loop（事件轮询）
+![javascript](https://luckrain7.github.io/Knowledge-Sharing/resource/2020/0420/javascript.png)
+
+
+
+## 0.  引言：
+
+最近写了一些异步递归的代码，着实有点头疼，索性重新研究一下JavaScript 代码执行顺序，并附上一道面试题的解析。
+
+## 1.  JavaScript 代码执行顺序
+
+> 首先我们了解几个概念
+
+### 1.1  微任务/宏任务
+
+异步队列中包括：微任务（micro-task） 和 宏任务（macro-task） 
+
+微任务包括： `process.nextTick` ，`Promise` （ `process.nextTick` 为 Node 独有）
+
+宏任务包括： `script` ， `setTimeout` ，`setInterval` ，`setImmediate` ，`I/O` ，`UI rendering`
+
+Tips：
+
+- 微任务优先级高于宏任务的前提是：同步代码已经执行完成。因为 `script`  属于宏任务，程序开始后会首先执行同步脚本，也就是`script` 。
+- `Promise` 里边的代码属于同步代码，`.then()` 中执行的代码才属于异步代码。
+
+### 1.2  Event Loop（事件轮询）
 
 Event Loop 是一个程序结构，用于等待和发送消息和事件。
 
 Event Loop 执行顺序如下所示：
 
-- 首先执行同步代码，这属于宏任务
+- 首先执行同步代码（宏任务）
 - 当执行完所有同步代码后，执行栈为空，查询是否有异步代码需要执行
 - 执行所有微任务
 - 当执行完所有微任务后，如有必要会渲染页面
 - 然后开始下一轮 Event Loop，执行宏任务中的异步代码，也就是 `setTimeout` 中的回调函数
 
-微任务 》 宏任务
+Tips：简化讲：先执行一个宏任务（script同步代码），然后执行并清空微任务，再执行一个宏任务，然后执行并清空微任务，再执行一个宏任务，再然后执行并清空微任务......如此循环往复（一个宏任务 -> 清空微任务 -> 一个宏任务 -> 清空微任务）
+
+![javascript代码执行顺序](https://luckrain7.github.io/Knowledge-Sharing/resource/2020/0420/javascript代码执行顺序.png)
 
 
 
-例子1：
+## 2.  面试题详解
+
+### 2.1  题目
 
 ```js
 setTimeout(function () {
@@ -53,6 +74,7 @@ new Promise(function (resolve) {
 setTimeout(function () {
   console.log("set2");
 });
+
 console.log(2);
 
 new Promise(function (resolve) {
@@ -62,13 +84,12 @@ new Promise(function (resolve) {
 });
 ```
 
-执行过程解析：
+### 2.2  执行过程解析
 
-执行同步代码：
+执行所有同步代码（第一次宏任务）：
 
 ```javascript
-// setTimeout内function 放入宏任务
-setTimeout(function () {
+setTimeout(function () { // setTimeout 内 function 放入宏任务
   console.log(" set1");
   new Promise(function (resolve) {
     resolve();
@@ -92,6 +113,7 @@ new Promise(function (resolve) {
 setTimeout(function () {
   console.log("set2"); // setTimeout内function 放入宏任务
 });
+
 console.log(2); // 打印 2
 
 new Promise(function (resolve) {
@@ -102,11 +124,11 @@ new Promise(function (resolve) {
 
 
 // 此时控制台打印 ： pr1  >  2
-// 异步任务：[微任务数:2][宏任务数：2]
-// 先执行微任务
+// 异步任务队列：[微任务数:2][宏任务数：2]
+// 执行并清空微任务
 ```
 
-执行微任务
+执行并清空微任务
 
 ```javascript
 function () {
@@ -119,10 +141,10 @@ function () {
 
 // 此时控制台打印 ： then1  >  then3
 // 异步任务：[微任务数:0][宏任务数：2]
-// 执行宏任务
+// 执行一个宏任务
 ```
 
-执行宏任务
+执行一个宏任务
 
 ```javascript
 function () {
@@ -141,10 +163,10 @@ function () {
 
 // 此时控制台打印 ： set1
 // 异步任务：[微任务数:1][宏任务数：1]
-// 执行微任务
+// 执行并清空微任务
 ```
 
-再次执行微任务
+执行并清空微任务
 
 ```javascript
 function () {     
@@ -158,10 +180,10 @@ function () {
 
 // 此时控制台打印 ： then2
 // 异步任务：[微任务数:1][宏任务数：1]
-// 执行微任务
+// 此时微任务列表增加并未清空，继续执行微任务
 ```
 
-再次执行微任务
+此时微任务列表增加并未清空，继续执行微任务
 
 ```javascript
 function () {
@@ -198,36 +220,18 @@ set2
 
 
 
+### 推荐阅读
 
+-  [一道“简单”的 This 题解析](https://mp.weixin.qq.com/s/QLabNBOChsKmrpvEXJrpNg) 
 
-## 内存回收
+-  [如何在Vue中优雅的使用防抖、节流](https://rain7.top/article/如何在Vue中优雅的使用防抖节流.html) 
 
-内存快接近满
+- [如何在 Array.forEach 中正确使用 Async](https://rain7.top/article/如何在Javascript中对Array.forEach使用异步函数.html)
 
-![image-20200419220129076](C:\Users\ZHCZ\Desktop\growth-record\Demo\2020-04-19\img\image-20200419220129076.png)
+- [如何在 Array.filter 中正确使用 Async](https://rain7.top/article/如何在Array.filter中正确使用Async.html)
 
+- [如何在 Array.reduce 中正确使用 async](https://mp.weixin.qq.com/s/9wl8-SYspr3s358Tf0CmSg)
 
+#### 如果对你有一点点帮助，可以 start
 
-内存查看
-
-浏览器 - window.performance
-
-Node - process.memoryUsage()
-
-```js
-// node 
-{
-  rss: 21213184,     
-  heapTotal: 5656576,
-  heapUsed: 3143216, 
-  external: 1401023   // 可拓展内存
-}
-```
-
-
-
-容易引发内存使用不当的情景
-
-- 滥用全局变量
-- 缓存不限制
-- 操作大文件
+![您的关注是莫大的鼓励❥(^_-)](https://luckrain7.github.io/Knowledge-Sharing/resource/images/wx.png)
