@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>柯理化函数</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">柯理化函数</div>
+
+    <script>
+		/* ~ function (proto) {
+			function bind(context = window, ...outerArgs) {
+				//=>this:要处理的函数
+				let _this = this;
+				return function proxy(...innerArgs) {
+					let args = outerArgs.concat(innerArgs);
+					_this.call(context, ...args);
+				};
+			}
+			proto.bind = bind;
+		}(Function.prototype); */
+
+		/* ~ function (proto) {
+			function bind(context) {
+				context = context || window;
+				var _this = this;
+				var outerArgs = Array.prototype.slice.call(arguments, 1);
+				return function proxy() {
+					var innerArgs = [].slice.call(arguments, 0);
+					let args = outerArgs.concat(innerArgs);
+					_this.apply(context, args);
+				};
+			}
+			proto.bind = bind;
+		}(Function.prototype);
+ */
+
+        let obj = {
+            x: 100
+        };
+
+        function fn(y, ev) {
+            this.x += y;
+            console.log(this);
+        }
+
+        box.onclick = fn.bind(obj, 200);
+		/* 	box.onclick = function proxy(ev) {
+			fn.call(obj, ...[200, ev]);
+		};*/
+
+		/*
+		 * 柯理化函数的思想：
+		 *   利用闭包的机制，把一些内容事先存储和处理了，等到后期需要的时候拿来即用即可
+		 */
+		/*
+		 * bind：预先处理内容
+		 *   @params
+		 * 		func:要执行的函数
+		 *      context:需要改变的this指向
+		 *      args:给函数传递的参数
+		 *   @return
+		 * 	    返回一个代理函数
+		 */
+		/* function bind(func, context, ...args) {
+			//=>func:fn
+			//=>context:obj
+			//=>args:[200,300]
+			return function proxy() {
+				func.call(context, ...args);
+			};
+		}
+		setTimeout(bind(fn, obj, 200, 300), 1000);
+		//=>setTimeout(function proxy(){
+		//   func.call(context, ...args);
+		//   =>fn.call(obj,200,300);
+		//},1000);
+
+		box.onclick = function () {
+			//=>点击执行匿名函数,在匿名函数执行的时候再把fn执行
+			fn.call(obj, 200);
+		};
+ 		*/
+		//=>触发盒子点击事件的时候，把fn执行，并且让fn中的this指向obj，再给fn传递一个200
+		// box.onclick = fn; //=>this:box y:MouseEvent
+
+		//=>call/apply都会把函数立即执行，而bind不会立即执行函数，预先存储一些内容（bind不兼容IE8及以下）
+		// box.onclick = fn.bind(obj, 200);
+    </script>
+</body>
+
+</html>

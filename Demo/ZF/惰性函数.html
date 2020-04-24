@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <title>惰性函数</title>
+
+</head>
+
+<body>
+
+    <script>
+		/*
+		 *  天气信息管理（查询、设置地区...）
+		 *  新闻信息管理（查询、设置地区、分享...）
+		 */
+        /* 单例设计模式（最原始的模块化思想） */
+        let weatherModule = (function () {
+            let _default = 'beijing';
+            let queryWeather = function () {
+                //...
+            };
+            let setCity = function () {
+                //...
+            };
+
+            return {
+                //ES6 setCity:setCity
+                setCity
+            };
+        })();
+
+        let newsModule = (function () {
+            let _default = 'beijing';
+            let queryNews = function () {
+                //...
+                weatherModule.setCity();
+            };
+            return {};
+        })(); 
+    </script>
+
+    <script>
+		/*
+		 * DOM2事件绑定
+		 *   元素.addEventListener()
+		 *   元素.attachEvent()
+		 */
+        function emit(element, type, func) {
+            if (element.addEventListener) {
+                element.addEventListener(type, func, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + type, func);
+            } else {
+                element['on' + type] = func;
+            }
+        }
+
+        function emit(element, type, func) {
+            if (element.addEventListener) {
+                emit = function (element, type, func) {
+                    element.addEventListener(type, func, false);
+                };
+            } else if (element.attachEvent) {
+                emit = function (element, type, func) {
+                    element.attachEvent('on' + type, func);
+                };
+            } else {
+                emit = function (element, type, func) {
+                    element['on' + type] = func;
+                };
+            }
+            emit(element, type, func);
+        }
+
+        emit(box, 'click', fn1);
+        emit(box, 'click', fn2); 
+    </script>
+</body>
+
+</html>
