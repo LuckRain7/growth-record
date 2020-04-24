@@ -1,0 +1,65 @@
+<!--
+ * @Description:  
+ * @Author: LuckRain7
+ * @Date: 2020-04-24 16:07:30
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compose函数</title>
+</head>
+
+<body>
+    <script>
+        let fn1 = function (x) {
+            return x + 10
+        }
+
+        let fn2 = function (x) {
+            return x * 10
+        }
+
+        let fn3 = function (x) {
+            return x / 10
+        }
+
+
+        function compose(...funcs) {
+            // funcs 传递的函数集合
+            return function proxy(...args) {
+                // args 第一次调用函数传递的参数集合
+                let len = funcs.length
+                // 一个函数都没有传
+                if (len === 0) {
+
+                    return args
+                }
+
+                // 只有一个函数
+                if (len === 1) {
+                    // 只需要执行一个函数 把函数执行 并把结果返回
+                    return funcs[0](...args)
+                }
+
+                return funcs.reduce((x, y) => {
+                    return typeof x === 'function' ? y(x(...args)) : y(x)
+                })
+            }
+        }
+
+        // 执行顺序是反的
+        console.log(compose(fn1, fn2, fn1, fn3)(5));
+
+
+        console.log(fn3(fn1(fn2(fn1(5))))); // 16
+
+        // compose函数调用的扁平化
+
+
+    </script>
+</body>
+
+</html>

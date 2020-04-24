@@ -1,4 +1,4 @@
-记录自己的学过的东西，留作纪念！🌟🌟🌟🌟🌟
+### 日常DEMO
 
 - [[2020-04-22-...] 珠峰-WEB前端高级开发工程师](https://github.com/LuckRain7/growth-record/tree/master/Demo/ZF/)
 
@@ -30,3 +30,17 @@
 
 - [[2020-04-02] 文件上传（FormData，base64，切片上传） ](https://github.com/LuckRain7/growth-record/tree/master/Demo/file-upload)
 
+
+### 您也可以在以下网站关注我： 
+
+ [掘金](https://juejin.im/user/5c749a736fb9a049a97a5a8e) | [SegmentFault 思否](https://segmentfault.com/u/rain7) | [CSDN](https://blog.csdn.net/True_Rain) | [简书](https://www.jianshu.com/u/b456d77c42db) | [微信公众号](https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI0ODczNDM0NQ==&scene=124#wechat_redirect) | [博客园](https://www.cnblogs.com/luckrain7/) | [知乎](https://www.zhihu.com/people/luckrain7)
+
+
+
+### 微信公众号
+
+欢迎扫码关注我的公众号（您的关注是莫大的鼓励 💗💗💗💗💗）
+
+<div style="height:200px;">
+<img src="https://luckrain7.github.io/Knowledge-Sharing/resource/images/wx.png" height=200/>
+</div>
