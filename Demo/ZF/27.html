@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 面试题1 -->
+  <!-- <script>
+    ~ function (number) {
+      function plus(num) {
+        return this + num
+      }
+      function minus(num) {
+        return this - num
+      }
+      number.plus = plus;
+      number.minus = minus;
+
+    }(Number.prototype);
+
+
+    let n = 10
+    // n.plus(10)
+    let m = n.plus(10).minus(5);
+    console.log(m);//=>15（10+10-5）
+  </script> -->
+
+  <!-- <script>
+    function fun() {
+      this.a = 0;
+      this.b = function () {
+        alert(this.a);
+      }
+    }
+    fun.prototype = {
+      b: function () {
+        this.a = 20;
+        alert(this.a);
+      },
+      c: function () {
+        this.a = 30;
+        alert(this.a)
+      }
+    }
+    var my_fun = new fun();
+    my_fun.b(); // 0
+    my_fun.c(); // 30
+
+  </script> -->
+
+  <!-- <script>
+    function add(...args) {
+      let sum = args.reduce(function (x, y) {
+        return x + y
+      })
+      console.log(sum);
+      
+    }
+    add(1);       //1
+    // add(1)(2);    //3
+    // add(1)(2)(3); //6
+    // add(1)(2, 3);  //6
+    // add(1, 2)(3);  //6
+    add(1, 2, 3);   //6
+  </script> -->
+  <script>
+    let obj = {
+      2: 3,
+      3: 4,
+      length: 2,
+      push: Array.prototype.push
+    }
+    obj.push(1);
+    obj.push(2);
+    console.log(obj);
+
+  </script>
+</body>
+
+</html>
