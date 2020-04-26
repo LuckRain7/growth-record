@@ -1,0 +1,108 @@
+<!--
+ * @Description:  
+ * @Author: LuckRain7
+ * @Date: 2020-04-26 12:25:52
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- <script>
+        function add(...in1) {
+
+            add = function (...in2) {
+                in1.push(...in2)
+                return add
+            }
+            add.toString = function () {
+                return in1.reduce((x, y) => (x + y))
+            }
+
+            return add
+        }
+
+        let res = add(1, 2)(3)(4)(5)(6, 7);
+        console.log(res.toString());
+    </script> -->
+
+    <!-- <script>
+        function currying(anonymous, length) {
+            return function add(...args) {
+                if (args.length >= length) {
+                    return anonymous(...args);
+                }
+                return currying(anonymous.bind(null, ...args), length - args.length);
+            }
+        }
+
+        let add = currying(function anonymous(...args) {
+            return args.reduce((x, y) => x + y);
+        }, 4);
+
+        console.log(add(1, 2)(3)(4))
+    </script> -->
+
+    <!-- <script>
+
+        // 防抖
+        function debounce(fn, time) {
+
+            let timeout = null
+            return function () {
+                let _arguments = arguments
+                if (timeout) {
+                    clearTimeout(timeout)
+                }
+                timeout = setTimeout(() => {
+                    fn.call(this, ..._arguments)
+                }, time);
+            }
+        }
+        let i = 0
+        let getSum = debounce(function () {
+            console.log(arguments);
+
+            // console.log(ta.reduce((x, y) => (x + y)));
+        }, 100)
+
+
+        function add(...args1) {
+            add = function (...args2) {
+                args1.push(...args2)
+                // sumDebounce.call(args1)
+                getSum(args1)
+                return add
+            }
+            return add
+        }
+        add(1, 2, 3)(3)(4)
+    </script> -->
+
+    <script>
+
+        function currying(anonymous, length) {
+            return function add(...args) {
+                if (args.length >= length) {
+                    return anonymous(...args)
+                } else {
+                    return currying(anonymous.bind(null, ...args), length - args.length)
+                }
+            }
+        }
+
+        let add = currying(function anonymous(...args) {
+            return args.reduce((x, y) => (x + y))
+        }, 4)
+        
+        console.log(add(1, 2)(3)(4))
+    </script>
+</body>
+
+</html>

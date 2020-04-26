@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<title>珠峰培训 - 微信：18310612838</title>
+</head>
+
+<body>
+	<script>
+		/*
+		 * 检测数据类型1：typeof
+		 *   返回结果都是字符串
+		 *   字符串中包含了对应的数据类型  "number"/"string"/"boolean"/"undefined"/"symbol"/"object"/"function"
+		 * 
+		 * 【局限性】
+		 *    typeof null => "object"   null不是对象，它是空对象指针
+		 *    检测数据或者正则等特殊的对象，返回结果都是"object"，所以无法基于typeof判断是数据还是正则
+		 */
+		// console.log(typeof []); //=>"object"
+		// console.log(typeof typeof []); //=>"string"
+	</script>
+
+	<script>
+		/*
+		 *  检测数据类型2/3：instanceof / constructor
+		 *     检测某个实例是否属于这个类
+		 *     他检测的底层机制：所有出现在其原型链上的类，检测结果都是TRUE
+		 *  【局限性】
+		 *     由于可以基于__proto__或者prototype改动原型链的动向，所以基于instanceof检测出来的结果并不一定是准确的
+		 *     基本数据类型的值，连对象都不是，更没有__proto__，虽说也是所属类的实例，在JS中也可以调取所属类原型上的方法，但是instanceof是不认的
+		 */
+		// console.log(12 instanceof Number); //=>false
+		// console.log(new Number(12) instanceof Number); //=>true
+		// console.log([] instanceof Array); //=>true
+		// console.log([] instanceof Object); //=>true
+
+		// function Fn() {}
+		// Fn.prototype.__proto__ = Array.prototype;
+		// let f = new Fn();
+		// //=>原型链：f -> Fn.prototype -> Array.prototype -> Object.prototype
+	</script>
+
+	<script>
+		/*
+		 *  检测数据类型4：Object.prototype.toString.call([value]) / ({}).toString.call([value])
+		 *     不是用来转换为字符串的，而是返回当前实例所属类的信息
+		 *  格式："[object 所属类信息]"
+		 *     "[object Object/Array/RegExp/Date/Function/Null/Undefined/Number/String/Boolean/Symbol...]"
+		 *  这种方式基本上没有什么局限性，是检测数据类型最准确的方式
+		 */
+		// Number/String/Boolean/Symbol他们的原型上都有：
+		//   =>toString：转化为字符串
+		//   =>valueOf：返回原始值
+		// Array/RegExp/Function等内置类的原型上都有
+		//   =>toString：转化为字符串
+		// Object的原型上
+		//   =>toString：返回当前实例所属类的信息
+		//   =>valueOf：返回原始值
+	</script>
+
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script>
+		var class2type = {};
+		var toString = class2type.toString; //=>Object.prototype.toString
+		var hasOwn = class2type.hasOwnProperty; //=>Object.prototype.hasOwnProperty
+		var fnToString = hasOwn.toString; //=>Function.prototype.toString
+		var ObjectFunctionString = fnToString.call(Object); //=>Object.toString() =>"function Object() { [native code] }"
+
+		"Boolean Number String Function Array Date RegExp Object Error Symbol".split(" ").forEach(function anonymous(item) {
+			class2type["[object " + item + "]"] = item.toLowerCase();
+		});
+		console.log(class2type);
+
+		function toType(obj) {
+			//=>obj may be null / undefined
+			//=>return "null"/"undefined"
+			if (obj == null) {
+				return obj + "";
+			}
+
+			return typeof obj === "object" || typeof obj === "function" ? class2type[toString.call(obj)] || "object" :
+				typeof obj;
+		}
+		// jQuery.type = toType;
+
+		//=>是否为函数
+		var isFunction = function isFunction(obj) {
+			return typeof obj === "function" && typeof obj.nodeType !== "number";
+		};
+
+		//=>检测是否为window对象
+		// window.window===window
+		var isWindow = function isWindow(obj) {
+			return obj != null && obj === obj.window;
+		};
+
+		//=>是否为纯粹的对象{}（数组和正则等都不是纯粹的对象）
+		var isPlainObject = function isPlainObject(obj) {
+			var proto, Ctor;
+			if (!obj || toString.call(obj) !== "[object Object]") {
+				return false;
+			}
+			//=>getPrototypeOf获取当前对象的原型
+			proto = Object.getPrototypeOf(obj);
+			// Objects with no prototype (`Object.create( null )`)
+			if (!proto) {
+				return true;
+			}
+			// Objects with prototype are plain iff they were constructed by a global Object function
+			Ctor = hasOwn.call(proto, "constructor") && proto.constructor;
+			return typeof Ctor === "function" && fnToString.call(Ctor) === ObjectFunctionString;
+		};
+
+		//=>是否为空对象
+		var isEmptyObject = function isEmptyObject(obj) {
+			var name;
+			for (name in obj) {
+				return false;
+			}
+			return true;
+		};
+
+		//=>是否为数组或者类数组
+		var isArrayLike = function isArrayLike(obj) {
+			var length = !!obj && "length" in obj && obj.length,
+				type = toType(obj);
+			if (isFunction(obj) || isWindow(obj)) {
+				return false;
+			}
+			return type === "array" || length === 0 || typeof length === "number" && length > 0 && (length - 1) in obj;
+		};
+	</script>
+</body>
+
+</html>
