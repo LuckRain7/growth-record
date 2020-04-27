@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        ~function (proto) {
+
+            function bind(content) {
+                if (typeof this !== 'function') {
+                    throw new TypeError('Error')
+                }
+
+                if (content === undefined) {
+                    content = window
+                }
+
+                // 获取传递的实参集合
+                var args = [].slice.call(arguments, 1)
+                // 获取需要的函数
+                var _this = this
+                // 返回
+                return function anonymous() {
+                    var amArgs = [].slice.call(arguments, 0)
+                    _this.apply(content, args.concat(amArgs))
+                }
+            }
+
+            function bindByES6(context = window, ...args) {
+                return (...amArg) => {
+                    this.call(context, ...args.concat(amArg))
+                }
+            }
+
+            proto.bind = bind
+        }(Function.prototype)
+
+        Function.prototype.call = function (context, ...args) {
+            context = context || window
+            const type = typeof context
+            if (type !== 'object' && type !== 'function' && type !== 'symbol') {
+                // 基本类型值 转换成引用类型值
+                switch (type) {
+                    case 'number':
+                        context = new Number(context)
+                    case 'string':
+                        context = new String(context)
+                    case 'boolean':
+                        context = new Boolean(context)
+                }
+            }
+            context.$fn = this
+            let result = context.$fn(...args)
+            delete context.$fn
+            return result
+        }
+
+        Function.prototype.apply = function (context, args) {
+            context = context || window
+            const type = typeof context
+            if (type !== 'object' && type !== 'function' && type !== 'symbol') {
+                // 基本类型值 转换成引用类型值
+                switch (type) {
+                    case 'number':
+                        context = new Number(context)
+                    case 'string':
+                        context = new String(context)
+                    case 'boolean':
+                        context = new Boolean(context)
+                }
+            }
+            context.$fn = this
+            let result = context.$fn(...args)
+            delete context.$fn
+            return result
+        }
+
+        // es6写法
+
+
+        let obj = {
+            fn(x, y) {
+                console.log(this, x, y);
+            }
+        };
+        let aaa = {
+            x: 1
+        }
+        obj.fn.apply(aaa, [10, 20])
+        // obj.fn.call(aaa, 10, 20)
+
+        // setTimeout(obj.fn.bind(window, 10, 20), 1000);
+        // setTimeout(obj.fn.bind(null, 10, 20), 1000);
+    </script>
+</body>
+
+</html>
