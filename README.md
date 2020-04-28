@@ -1,5 +1,8 @@
 ### 日常DEMO
 
+
+- [[2020-04-28] ts + express 静态服务器 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/static-server/)
+
 - [[2020-04-26/27] GitHub 趋势榜爬虫](https://github.com/LuckRain7/web-crawler)
 
 - [[2020-04-22-...] 珠峰-WEB前端高级开发工程师](https://github.com/LuckRain7/growth-record/tree/master/Demo/ZF/)
