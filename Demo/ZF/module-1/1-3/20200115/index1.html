@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训</title>
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+			background: lightcyan;
+		}
+
+		#box {
+			box-sizing: border-box;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -100px 0 0 -100px;
+			width: 200px;
+			height: 200px;
+			background: lightcoral;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box"></div>
+
+	<script>
+		let AA = null;
+		box.onclick = function (ev) {
+			console.log('DOM0-1', ev);
+			AA = ev;
+		};
+		box.addEventListener('click', ev => {
+			console.log('DOM2-1', ev === AA);
+			console.log('DOM2-1-ev:', ev);
+
+		});
+		// box.addEventListener('click', _ => {
+		// 	console.log('DOM2-2');
+		// });
+		// box.onclick = function () {
+		// 	console.log('DOM0-2');
+		// };
+	</script>
+</body>
+
+</html>
+
+<!-- 
+	1.什么是事件？
+	  浏览器赋予元素天生默认的一些行为，不论是否绑定相关的方法，只要行为操作进行了，那么一定会触发相关的事件行为
+	2.什么是事件绑定？
+	  给元素的某一个事件行为绑定方法，目的是行为触发会可以做点自己想做的事情
+	3.事件绑定 DOM0事件绑定/DOM2事件绑定
+	  
+	  【DOM0事件绑定】
+		元素.onxxx=function(){}
+		元素.onxxx=null;  
+
+		原理：给DOM元素对象的某一个私有事件属性赋值函数值，当用户触发这个事件行为，JS引擎会帮助我们把之前绑定的方法执行的
+			=>1.不是所有的事件类型都支持这种方式，元素有哪些onxxx事件属性，才能给其绑定方法（例如：DOMContentLoaded事件就不支持这种绑定方案）
+			=>2.只能给当前元素的某一个事件行为绑定一个方法（绑定多个也只能识别最后一个）
+	
+	  【DOM2事件绑定】
+		元素.addEventListener([事件类型],[方法],[传播模式])
+		元素.removeEventListener([事件类型],[方法],[传播模式])
+		    function anonymous(){
+				console.log('ok');
+			}
+			box.addEventListener('click',anonymous,false);
+			box.removeEventListener('click',anonymous,false);
+		原理：基于原型链查找机制，找到EventTarget.prototype上的addEventListener方法执行，它是基于浏览器事件池机制完成事件绑定的
+
+	4.事件对象
+	  当前元素的某个事件行为被触发，不仅会把绑定的方法执行，还会给绑定的方法传递一个实参，这个实参就是事件对象；事件对象就是用来存储当前行为操作相关信息的对象；（MosueEvent/KeyboardEvent/Event/TouchEvent...）
+	  =>事件对象和在哪个方法中拿到的没关系，它记录的是当前操作的信息
+ -->

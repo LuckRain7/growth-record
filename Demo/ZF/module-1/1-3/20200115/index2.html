@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>珠峰培训</title>
+	<link rel="stylesheet" href="css/reset.min.css">
+	<style>
+		html,
+		body {
+			height: 100%;
+		}
+
+		#outer {
+			margin: 20px auto;
+			width: 300px;
+			height: 300px;
+			background: lightblue;
+		}
+
+		#inner {
+			margin: 20px auto;
+			width: 200px;
+			height: 200px;
+			background: lightcoral;
+		}
+
+		#center {
+			margin: 20px auto;
+			width: 100px;
+			height: 100px;
+			background: lightgreen;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="outer">
+		<div id="inner">
+			<div id="center"></div>
+		</div>
+	</div>
+
+	<script>
+		
+		//   over/out：存在冒泡传播机制，并且不能理解为进入和离开，而是鼠标焦点在谁上或者离开谁（导致问题：从小盒子到大盒子，触发小盒子out，也会触发大盒子over，从大盒子进入小盒子，触发大盒子的out，触发小盒子的over...）
+		 
+		//  enter/leave：默认阻止了冒泡传播机制，事件行为是真正的进入和离开（真实项目中，一般想要操作的大盒子，给其进入离开事件绑定方法，并且大盒子还存在小盒子，我们基本上都用enter/leave）
+		
+		inner.onmouseenter = function () {
+			console.log('INNER ENTER');
+		};
+		outer.onmouseenter = function () {
+			console.log('OUTER ENTER');
+		};
+		inner.onmouseleave = function () {
+			console.log('INNER LEAVE');
+		};
+		outer.onmouseleave = function () {
+			console.log('OUTER LEAVE');
+		};
+	</script>
+
+	<script>
+		// document.body.onclick = function (ev) {
+		// 	console.log('BODY', ev);
+		// }
+		// outer.onclick = function (ev) {
+		// 	console.log('OUTER', ev);
+		// }
+		// inner.onclick = function (ev) {
+		// 	console.log('INNER', ev);
+		// }
+		// center.onclick = function (ev) {
+		// 	console.log('CENTER', ev);
+		// 	// ev.stopPropagation();
+		// }
+
+		// outer.addEventListener('click', function (ev) {
+		// 	console.log('OUTER-dom2', ev);
+		// }, true);
+		// inner.addEventListener('click', function (ev) {
+		// 	console.log('INNER-dom2', ev);
+		// }, false);
+	</script>
+</body>
+
+</html>
