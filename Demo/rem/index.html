@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            /* 1rem = 20px */
+            font-size: 20px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 20px;
+            background: lightblue;
+            margin: 20px;
+        }
+
+        .box:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+        }
+
+        .box:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+        }
+
+        @media screen and (width:375px) {
+            .box:nth-child(1) {
+                width: 117px;
+                height: 117px;
+                line-height: 117px;
+            }
+
+            .box:nth-child(2) {
+                width: 176px;
+                height: 176px;
+                line-height: 176px;
+            }
+        }
+    </style>
+    <script>
+        function computedREM() {
+            let HTML = document.documentElement,
+                winW = HTML.clientWidth;
+
+            HTML.style.fontSize = winW / 320 * 20 + 'px';
+        }
+        computedREM()
+        window.addEventListener('resize', computedREM)
+    </script>
+</head>
+
+<body>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+</body>
+
+</html>
