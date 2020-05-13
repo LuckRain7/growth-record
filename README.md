@@ -1,5 +1,7 @@
 ### 日常DEMO
 
+- [[2020-05-13] 前端创建自下载内容](https://github.com/LuckRain7/growth-record/tree/master/Demo/download)
+
 - [[2020-05-05] lucky-ui(magnifier)](https://github.com/LuckRain7/lucky-ui)
 
 - [[2020-04-28] ts + express 静态服务器 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/static-server/)
