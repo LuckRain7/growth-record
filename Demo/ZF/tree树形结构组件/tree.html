@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>zTree树形结构菜单</title>
+	<!-- import css -->
+	<link rel="stylesheet" href="./css/reset.min.css">
+	<style>
+		* {
+			-webkit-user-select: none;
+		}
+
+		.container {
+			box-sizing: border-box;
+			margin: 20px auto;
+			padding: 10px;
+			width: 600px;
+			border: 1px dashed #AAA;
+		}
+
+		.level {
+			display: none;
+			font-size: 14px;
+			margin-left: 10px;
+		}
+
+		.level.level0 {
+			display: block;
+			margin-left: 0;
+		}
+
+		.level li {
+			position: relative;
+			padding-left: 15px;
+			line-height: 30px;
+		}
+
+		.level li .icon {
+			position: absolute;
+			left: 0;
+			top: 9px;
+			box-sizing: border-box;
+			width: 12px;
+			height: 12px;
+			line-height: 8px;
+			text-align: center;
+			border: 1px solid #AAA;
+			background: #EEE;
+			cursor: pointer;
+		}
+
+		.level li .icon:after {
+			display: block;
+			content: "+";
+			font-size: 12px;
+			font-style: normal;
+		}
+
+		.level li .icon.open:after {
+			content: "-";
+		}
+
+		.level li .title {
+			color: #000;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<ul class="level level0" id="tree1"></ul>
+	</div>
+
+	<div class="container">
+		<ul class="level level0" id="tree2"></ul>
+	</div>
+
+	<!-- import js -->
+	<script src="./js/jquery.min.js"></script>
+	<script>
+		// 1.动态绑定层级结构数据 
+		let $tree1 = $('#tree1')
+		let count = 0;
+
+		let bind = function bind(result) {
+
+			let str = ``
+			result.forEach(item => {
+				count++;
+				let { name, open, children } = item;
+				str += `<li>
+					<a href="#" class="title">${item.name}</a>
+					${item.children
+						? `<em class="icon ${item.open ? 'open' : ''}"></em>
+						<ul class="level level${count}" style="display:${item.open ? 'block' : 'none'};">
+						${bind(item.children)}
+						</ul>`
+						: ``}
+				</li>`
+			})
+			count--;
+			return str
+		}
+
+		// 2.拿去数据进行拼接
+		$.ajax({
+			url: './data.json',
+			method: 'get',
+			success: result => {
+				let str = bind(result)
+				$tree1.html(str)
+			}
+		})
+
+		// 3.实现无限极展开(事件委托，可以处理动态绑定的元素)
+		$tree1.on('click', function (ev) {
+			let target = ev.target
+			if (target.tagName === 'EM') {
+				// 把原生的 js 对象变成 JQ 对象，目的为了使用JQ中的方法
+				let $target = $(target),
+					$next = $target.next('ul');
+
+				$target.toggleClass('open')
+				$next.stop().slideToggle(200)
+			}
+		})
+
+	</script>
+
+
+</body>
+
+</html>
