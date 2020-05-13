@@ -1,4 +1,4 @@
-### 日常DEMO
+### 日常DEMO | [框架DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/frame)
 
 - [[2020-05-13] 前端创建自下载内容](https://github.com/LuckRain7/growth-record/tree/master/Demo/download)
 
