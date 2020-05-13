@@ -1,5 +1,11 @@
 # jszip
 
+> 下载 `npm install jszip` or `yarn add jszip`
+>
+> 地址：[https://stuk.github.io/jszip/](https://stuk.github.io/jszip/)
+> 
+> github:[https://github.com/Stuk/jszip](https://github.com/Stuk/jszip)
+
 ## 1.  Node
 
 ```javascript
