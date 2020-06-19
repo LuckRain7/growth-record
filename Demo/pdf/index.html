@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <style>
+        .in {
+            margin-left: 50px;
+        }
+    </style>
+    <div class="in">
+        <div style="height: 50px;"></div>
+
+
+        <div style="color:red;"> 请填写物品名称</div>
+        <div> 物品名称：<input id="aa" /></div>
+    </div>
+    <div id="app">
+        <!-- 表头 -->
+        <div class="title">
+            <span class="main">XXXX入库无聊检验报告单</span>
+            <span>（一式三联）</span>
+        </div>
+        <!-- main -->
+        <div class="content">
+            <div class="time">
+                <div class="left ml10">供货单位：</div>
+                <div class="right mr10">xx年xx月xx日</div>
+            </div>
+            <div class="my-table">
+                <div class="table-height">
+                    <div class="first-width left">物品名称</div>
+                    <div class="leave-width left" id="name"></div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">送货数量</div>
+                    <div class="leave-width-five tac left">&nbsp;</div>
+                    <div class="leave-width-five tac left">抽检数量</div>
+                    <div class="leave-width-five tac left">&nbsp;</div>
+                    <div class="leave-width-five tac left ">抽检部位数</div>
+                    <div class="leave-width-five tac left no-border">&nbsp;</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">使用部门</div>
+                    <div class="leave-width left"></div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">检验依据</div>
+                    <div class="leave-width left tac">合同标准</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">检验项目</div>
+                    <div class="leave-width-there tac left">标准要求</div>
+                    <div class="leave-width-there tac left">实测结果</div>
+                    <div class="leave-width-there tac left no-border">是否合格</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">外观尺寸</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left no-border">&nbsp;</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">颗粒度</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left no-border">&nbsp;</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">水分</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left no-border">&nbsp;</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">透明度</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left no-border">&nbsp;</div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">&nbsp;</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left">&nbsp;</div>
+                    <div class="leave-width-there tac left no-border">&nbsp;</div>
+                </div>
+                <div class="two-level">
+                    <div class="first-width left tac">
+                        <div>结果判定</div>
+                        <div>（合格或不合格）</div>
+                    </div>
+                    <div class="leave-width left"></div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">处理方式</div>
+                    <div class="leave-width left"></div>
+                </div>
+                <div class="table-height">
+                    <div class="first-width left">备注</div>
+                    <div class="leave-width left"></div>
+                </div>
+            </div>
+            <div class="" style="margin:10px 0; height: 30px;">
+                <div class="left ml10">检验人：</div>
+                <div class="left" style="width: 300px;">&nbsp;</div>
+                <div class="left">送货人：</div>
+                <div class="left" style="width: 300px;">&nbsp;</div>
+                <div class="left ">使用单位确认签字：</div>
+                <div style="float:none;"></div>
+            </div>
+            <div class="ml10" style="float:none;margin-bottom: 20px;"> 备注：一联（白）质检部、二联（红）仓库、三联（绿）入库</div>
+            <div style="height: 30px;"></div>
+        </div>
+    </div>
+
+    <button onclick="print()" class="print">打印PDF</button>
+    <script src="./html2canvas.min.js"></script>
+    <script src="./jspdf.js"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>
