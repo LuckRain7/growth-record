@@ -1,5 +1,7 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/frame)
 
+[[2020-06-21] Dialog 模态框](https://github.com/LuckRain7/growth-record/tree/master/Demo/dialog)
+
 [[2020-06-19] DOM->Canvas->PDF](https://github.com/LuckRain7/growth-record/tree/master/Demo/pdf)
 
 [[2020-06-14] 模态框拖拽](https://github.com/LuckRain7/growth-record/tree/master/Demo/%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C)
