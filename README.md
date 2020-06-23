@@ -1,5 +1,7 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/frame)
 
+[[2020-06-23] 文件夹遍历](https://github.com/LuckRain7/growth-record/tree/master/Demo/文件夹遍历)
+
 [[2020-06-21] Dialog 模态框](https://github.com/LuckRain7/growth-record/tree/master/Demo/dialog)
 
 [[2020-06-19] DOM->Canvas->PDF](https://github.com/LuckRain7/growth-record/tree/master/Demo/pdf)
@@ -54,6 +56,6 @@
 
 欢迎扫码关注我的公众号（您的关注是莫大的鼓励 💗💗💗💗💗）
 
-<div style="height:200px;">
+<div style="height:200px; ">
 <img src="https://luckrain7.github.io/Knowledge-Sharing/resource/images/wx.png" height=200/>
 </div>
