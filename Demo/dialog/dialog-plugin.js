@@ -53,7 +53,7 @@ window.alert = (function () {
       z-index: 9999;
       width: 400px;
       background: #FFF;
-      border-radius: 3px;
+      border-radius: 5px;
       overflow: hidden;
       transform: translateY(-1000px);
       transition: transform .3s;
@@ -73,6 +73,7 @@ window.alert = (function () {
       font-size: 18px;
       color: #FFF;
       font-weight: normal;
+      margin: 0;
       `,
         'h3'
       )
@@ -115,6 +116,7 @@ window.alert = (function () {
       cursor: pointer;
       color: #FFF;
       background: #2299EE;
+      border-radius: 5px;
        `,
         'button'
       )
@@ -130,6 +132,7 @@ window.alert = (function () {
       cursor: pointer;
       color: #000;
       background: #DDD;
+      border-radius: 5px;
        `,
         'button'
       )
