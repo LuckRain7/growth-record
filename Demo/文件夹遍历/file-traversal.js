@@ -2,7 +2,7 @@ const Path = require('path')
 const fs = require('fs')
 
 // 设置检索目录
-const rootPath = Path.resolve(__dirname, 'Demo')
+const rootPath = Path.resolve(__dirname, '../../Demo')
 
 // 存储文件目录
 let filesNameArr = {
@@ -14,6 +14,13 @@ let filesNameArr = {
 }
 
 let deepIndex = 0
+/*
+ *  description:
+ *  param {type} dir         文件地址
+ *  param {type} curArray    当前存储数组
+ *  param {type} _deepIndex  当前文件深度
+ *  return:
+ */
 const getDirMap = function (dir, curArray, _deepIndex) {
     // 同步拿到文件目录下的所有文件名
     const filesName = fs.readdirSync(dir)
@@ -91,4 +98,4 @@ getDirMap(rootPath, filesNameArr.children, deepIndex) // 获取文件 Map
 
 print(filesNameArr) // 打印
 
-fs.writeFileSync('menu.txt', printContent) // 打印
+fs.writeFileSync('menu.txt', printContent) // 存储为文件
