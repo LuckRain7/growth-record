@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let obj = {
+            name: 'Rain',
+            age: 25,
+        }
+
+        function deepClone(_obj) {
+            // 进行类型判断
+            if (obj == null) return obj; //判断空值
+            if (typeof _obj !== 'object') return _obj // 不需要进行克隆
+            if (_obj instanceof Date) return new Date(_obj) // 时间
+            if (_obj instanceof RegExp) return new RegExp(_obj) // 正则
+
+
+            let newObj = new _obj.constructor
+            for (key in _obj) {
+                if (_obj.hasOwnProperty(key)) {
+                    newObj[key] = deepClone(_obj[key])
+                }
+            }
+
+            return newObj
+        }
+    </script>
+</body>
+
+</html>
