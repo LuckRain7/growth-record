@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .red {
+            width: 500px;
+            height: 500px;
+            background: red;
+            position: relative;
+        }
+
+        .black {
+            width: 200px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* 写法一 */
+            /* margin: -100px 0 0 -100px; */
+            /* 写法二 */
+            /* transform: translate(-50%,-50%); */
+            /* 写法三 */
+            top:0;
+            right: 0;
+            bottom:0;
+            left:0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="red">
+        <div class="black"></div>
+    </div>
+
+    <script>
+        for(var i = 0 ; i<36;i++){
+            console.log(`.center .outer_six_piece:nth-child(${i}),`);
+        }
+    </script>
+</body>
+
+</html>

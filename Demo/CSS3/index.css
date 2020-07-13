@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #000;
+    /* 景深 视距 */
+    perspective: 1510;
+    -webkit-perspective: 1510; 
+}
+
+.center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    /* 设置旋转的角度 */
+    /* 缩小 */
+    /* transform: scale(0.7) rotateX(50deg) rotateY(-20deg) rotateZ(70deg); */
+    transform: translateY(230px) scale(0.3) rotateX(60deg) rotateY(-30deg) rotateZ(80deg) ;
+    animation: wiggle 20s infinite linear;
+}
+
+/* 居中 */
+.pos {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+/* 中心圆 */
+.circle {
+    width: 50px;
+    height: 50px;
+    background-color: #de0b46;
+    border-radius: 50%;
+    box-shadow: 0 0 70px 20px #de0b46;
+    /* x y 周移动距离 */
+    /* 反向移动一半 */
+    transform: translate(-50%, -50%);
+}
+
+/* 第一环 */
+.outer_one {
+    position: absolute;
+    transform: translate(-120px, -50%);
+}
+.outer_one_piece {
+    width: 10px;
+    height: 30px;
+    background-color: #de0b46;
+    position: absolute;
+    /* 
+    固定原点进行旋转 
+    xx 值越大圆越大
+    */
+    transform-origin: 120px 0;
+}
+
+/* 第二环 */
+.outer_two {
+    transform: translate(-290px, -50%);
+}
+.outer_two_piece {
+    position: absolute;
+    width: 28px;
+    height: 5px;
+    background: green;
+    transform-origin: 290px 0;
+}
+
+/* 第六环 */
+.outer_six {
+    transform: translate(600px, -50%);
+}
+
+.outer_six_piece {
+    height: 20px;
+    width: 300px;
+    padding: 30px;
+    border: 3px solid #3d4b6d;
+    opacity: 1;
+    border-radius: 100px;
+    position: absolute;
+    transform-origin: -600px 0;
+}
+
+.outer_six_piece.active {
+    border: 3px solid #de0b46;
+}
+
+.outer_six_piece.active span {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    top: 20px;
+    left: 30px;
+    position: absolute;
+    transition: all 0.2s ease 0.1s;
+}
+
+.outer_six_piece.active .line {
+    /* 中心点到块的距离 */
+    width: 600px;
+    left: -600px;
+    height: 5px;
+    background: #de0b46;
+    position: absolute;
+    transform: rotate(3deg);
+    transform-origin: right center;
+    opacity: 0;
+    transition: all 0.2s ease 0.1s;
+}
+
+.outer_six_piece.active .tip {
+    font-size: 20px;
+    color: gold;
+    position: absolute;
+    font-weight: 400;
+    left: 105%;
+    opacity: 0;
+    /* 动画选择  动画时间  动画曲线  动画延迟 */
+    transition: all 0.2s ease 0.1s;
+}
+
+.outer_six_piece.active:hover {
+    background: #de0b46;
+    cursor: pointer;
+    animation: blink 1s ease;
+}
+
+.outer_six_piece.active:hover .line {
+    opacity: 1;
+}
+
+.outer_six_piece.active:hover span {
+    left: 30%;
+}
+
+.outer_six_piece.active:hover .tip {
+    left: 120%;
+    opacity: 1;
+}
+
+
+/* 动画 */
+/* @keyframes 动画名称{
+    第几帧{
+
+    }
+} */
+
