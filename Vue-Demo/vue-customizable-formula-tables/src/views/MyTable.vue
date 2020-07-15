@@ -105,20 +105,45 @@ export default {
       console.log('添加公式')
       this.formula = val
     },
+
+    /**
+     * @description: 判断是否是全英文
+     * @param {String} val
+     * @return: Boolean
+     */
+
+    isAllEnglish(val) {
+      let re = new RegExp('^[a-zA-Z]+$')
+      if (re.test(val)) {
+        return true
+      } else {
+        return false
+      }
+    },
+
     // 添加字段
     addNewFieldHandle() {
       // 进行对象深拷贝  解决提示重复问题
-      // TODO 进行重复 dataIndex 的检测
-      const newField = JSON.parse(JSON.stringify(this.addNewField))
-      const length = this.columns.length
+      // TODO 进行重复 dataIndex 的检测（全英文检测 ✔️ | 唯一性检测）
+      const addNewField = this.addNewField
 
-      // 插入表头数据(给予位置)
-      this.columns.splice(length - 1, 0, newField)
+      // 对 dataIndex 进行 全英文检测
+      if (this.isAllEnglish(addNewField.dataIndex)) {
+        // 是全英文
+        const newField = JSON.parse(JSON.stringify(this.addNewField))
+        const length = this.columns.length
 
-      // 在表内添加字段
-      this.data.forEach(item => {
-        item[newField.dataIndex] = 1
-      })
+        // 插入表头数据(给予位置)
+        this.columns.splice(length - 1, 0, newField)
+
+        // 在表内添加字段 及 初始化数据
+        this.data.forEach(item => {
+          item[newField.dataIndex] = 1
+        })
+      } else {
+        // 不是全英文 提示重新填写
+        this.$message.error('字段标识 请输入全英文字符')
+      }
     },
     // 实现公式的计算
     GOGO() {
