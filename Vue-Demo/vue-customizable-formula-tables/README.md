@@ -1,24 +1,19 @@
 # vue-customizable-formula-tables
 
-## Project setup
-```
-yarn install
-```
+> 基于 Ant Design of Vue 可自定义公式的计算表格
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## 思路
 
-### Compiles and minifies for production
-```
-yarn build
-```
+> 1. 实现表格字段的添加
+>
+> 2. 实现计算公式的自定义
 
-### Lints and fixes files
-```
-yarn lint
-```
+### 1. 实现表格字段的添加
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+
+
+### 2. 实现计算公式的自定义

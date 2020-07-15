@@ -3,7 +3,7 @@
  * @Date         : 2020-07-15
  * @Description  : vue-customizable-formula-tables 可自定义计算公式表格
  * @ Love and Peace
---> 
+-->
 
 /*eslint no-unused-vars: "off"*/
 
@@ -140,13 +140,13 @@ export default {
 
     // 添加字段
     addNewFieldHandle() {
-      // * 进行重复 dataIndex 的检测（全英文检测 ✔️ | 唯一性检测）
+      // * 进行重复 dataIndex 的检测（全英文检测 ✔️ | 唯一性检测 ✔️ ）
       const addNewField = this.addNewField
 
       // 1、对 dataIndex 进行 全英文检测
       if (this.isAllEnglish(addNewField.dataIndex)) {
         // ✅
-        // 进行对象深拷贝  解决提示重复问题
+        // 进行对象深拷贝（基于JSON方案）  解决提示重复问题
         const newField = JSON.parse(JSON.stringify(addNewField))
         const length = this.columns.length
 
