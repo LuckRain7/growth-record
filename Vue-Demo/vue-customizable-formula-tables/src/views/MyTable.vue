@@ -1,3 +1,10 @@
+<!--
+ * @Author       : 震雨 LuckRain7
+ * @Date         : 2020-07-15
+ * @Description  : vue-customizable-formula-tables 可自定义计算公式表格
+ * @ Love and Peace
+--> 
+
 /*eslint no-unused-vars: "off"*/
 
 <template>
@@ -121,25 +128,43 @@ export default {
       }
     },
 
+    isOneOfColumns(val) {
+      let result = true
+      this.columns.forEach(item => {
+        if (item.dataIndex == val) {
+          result = false
+        }
+      })
+      return result
+    },
+
     // 添加字段
     addNewFieldHandle() {
-      // 进行对象深拷贝  解决提示重复问题
-      // TODO 进行重复 dataIndex 的检测（全英文检测 ✔️ | 唯一性检测）
+      // * 进行重复 dataIndex 的检测（全英文检测 ✔️ | 唯一性检测）
       const addNewField = this.addNewField
 
-      // 对 dataIndex 进行 全英文检测
+      // 1、对 dataIndex 进行 全英文检测
       if (this.isAllEnglish(addNewField.dataIndex)) {
-        // 是全英文
-        const newField = JSON.parse(JSON.stringify(this.addNewField))
+        // ✅
+        // 进行对象深拷贝  解决提示重复问题
+        const newField = JSON.parse(JSON.stringify(addNewField))
         const length = this.columns.length
 
-        // 插入表头数据(给予位置)
-        this.columns.splice(length - 1, 0, newField)
+        // 2、对唯一性进行检测
+        if (this.isOneOfColumns(addNewField.dataIndex)) {
+          //  唯一性 ✅
+          console.log('唯一标识')
 
-        // 在表内添加字段 及 初始化数据
-        this.data.forEach(item => {
-          item[newField.dataIndex] = 1
-        })
+          this.columns.splice(length - 1, 0, newField) // 插入表头数据(总金额前一个位置)
+
+          // 在表内添加字段 及 初始化数据
+          this.data.forEach(item => {
+            item[newField.dataIndex] = 0
+          })
+        } else {
+          //  唯一性 ：
+          this.$message.error('发现字段标识出现重复，请重新填写')
+        }
       } else {
         // 不是全英文 提示重新填写
         this.$message.error('字段标识 请输入全英文字符')
