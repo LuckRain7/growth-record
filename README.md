@@ -1,6 +1,8 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/frame)
 
+[[2020-07-15] 基于 Ant Design of Vue 可自定义公式的计算表格](https://github.com/LuckRain7/growth-record/tree/master/Vue-Demo/vue-customizable-formula-tables)
 
+[[2020-07-15] Vue Filter Demo（过滤器Demo）](https://github.com/LuckRain7/growth-record/tree/master/Vue-Demo/filter-demo)
 
 [[2020-07-13] node-bin-test](https://github.com/LuckRain7/growth-record/tree/master/Demo/node-bin-test)
 
