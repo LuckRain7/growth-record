@@ -2,6 +2,23 @@
 
 <template>
   <div class="table-div">
+    <div style="width: 700px;">
+      添加字段
+      <a-input
+        addon-before="字段名"
+        placeholder="Basic usage"
+        v-model="addNewField.title"
+      />
+      <a-input
+        addon-before="字段标识"
+        placeholder="Basic usage"
+        v-model="addNewField.dataIndex"
+      />
+      <a-button @click="addNewFieldHandle">
+        添加字段
+      </a-button>
+    </div>
+    <br /><br />
     <a-table :columns="columns" :data-source="data" bordered class="my-table">
       <template slot="name" slot-scope="text">
         <a>{{ text }}</a>
@@ -73,6 +90,10 @@ export default {
       data,
       columns,
       formula: '总钱数=苹果单价*苹果数量+香蕉单价*香蕉数量',
+      addNewField: {
+        title: '',
+        dataIndex: '',
+      },
     }
   },
   methods: {
@@ -83,6 +104,21 @@ export default {
     formulaHandleChange(val) {
       console.log('添加公式')
       this.formula = val
+    },
+    // 添加字段
+    addNewFieldHandle() {
+      // 进行对象深拷贝  解决提示重复问题
+      // TODO 进行重复 dataIndex 的检测
+      const newField = JSON.parse(JSON.stringify(this.addNewField))
+      const length = this.columns.length
+
+      // 插入表头数据(给予位置)
+      this.columns.splice(length - 1, 0, newField)
+
+      // 在表内添加字段
+      this.data.forEach(item => {
+        item[newField.dataIndex] = 1
+      })
     },
     // 实现公式的计算
     GOGO() {
@@ -116,7 +152,6 @@ export default {
       data.forEach(item => {
         eval(formula)
       })
-
     },
   },
 }
