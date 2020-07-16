@@ -192,12 +192,16 @@ export default {
         let re = null
         eval('re = /' + key + '/g')
 
+        // formula.replace('被替换值','替换值')
+        // /苹果数量/g// 
+        // /苹果单价/g
+
         formula = formula.replace(re, 'item.' + columnsMap[key])
       }
 
       console.log(formula)
 
-      // 3、eval 执行
+      // 3、eval 执行拼接好的  item.money=item.appleMoney*item.appleNums+item.bananaMoney*item.bananaNums
 
       data.forEach(item => {
         eval(formula)
