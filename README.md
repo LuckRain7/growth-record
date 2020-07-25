@@ -1,5 +1,7 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/frame)
 
+[[2020-07-25] 项目 ajax 接口请求规范](https://github.com/LuckRain7/growth-record/tree/master/Demo/project-ajax)
+
 [[2020-07-21] rain-vite（实现简单的 vite 功能）](https://github.com/LuckRain7/growth-record/tree/master/vite/rain-vite)
 
 [[2020-07-15] 基于 Ant Design of Vue 可自定义公式的计算表格](https://github.com/LuckRain7/growth-record/tree/master/Vue-Demo/vue-customizable-formula-tables)
