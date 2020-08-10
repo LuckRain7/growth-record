@@ -1,5 +1,7 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/frame)
 
+[[2020-08-10] JS沙盒(快照沙盒)](https://github.com/LuckRain7/growth-record/tree/master/Demo/JS-SandBox)
+
 [[2020-08-04] lazy-image-loading 前端图片懒加载](https://github.com/LuckRain7/growth-record/tree/master/Demo/lazy-image-loading)
 
 [[2020-07-25] 项目 ajax 接口请求规范](https://github.com/LuckRain7/growth-record/tree/master/Demo/project-ajax)
