@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>hello world</p>
+      <div id="shadow"></div>
+    </div>
+
+    <script>
+      // 外界无法访问 shadow dom（影子DOM）
+      let shadowDOM = shadow.attachShadow({ mode: "closed" });
+      let pElm = document.createElement("p");
+      pElm.innerHTML = "hello zf";
+      let styleElm = document.createElement("style");
+      styleElm.textContent = `
+      p{color:red}
+      `;
+      shadowDOM.appendChild(styleElm);
+      shadowDOM.appendChild(pElm);
+
+      document.body.appendChild(pElm);
+    </script>
+  </body>
+</html>

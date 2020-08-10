@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 如果应用 加载，刚开始加载a应用 window.a B应用 window.b
+      // 多页面应用 沙箱，创造一个干净的环境给这个子应用使用，当切换时，可以选择离开或者是恢复属性
+
+      // JS沙箱：快照沙箱、Proxy代理沙箱
+
+      // 快照沙箱 1年前拍一张  再拍一张（）区别保存起来  再回到一年前
+
+      class SnapshotSandbox {
+        constructor() {
+          this.proxy = window; // window 属性
+          this.modifyPropsMap = {}; // 记录在 window 上的修改
+          this.active();
+        }
+
+        // 激活
+        active() {
+          this.windowSnapshot = {}; // 拍照
+
+          for (const prop in window) {
+            if (window.hasOwnProperty(prop)) {
+              this.windowSnapshot[prop] = window[prop];
+            }
+          }
+
+          Object.keys(this.modifyPropsMap).forEach((p) => {
+            window[p] = this.modifyPropsMap[p];
+          });
+        }
+
+        // 失活
+        inactive() {
+          for (const prop in window) {
+            if (window.hasOwnProperty(prop)) {
+              if (this.windowSnapshot[prop] !== window[prop]) {
+                this.modifyPropsMap[prop] = window[prop]; // 变回一年前
+                window[prop] = this.windowSnapshot[prop];
+              }
+            }
+          }
+        }
+      }
+
+      let sandbox = new SnapshotSandbox();
+
+      // 应用的运行  从开始到结束，切换后不会影响全局
+      ((window) => {
+        window.a = 1;
+        window.b = 2;
+        console.log(" --- window.a --- ", window.a);
+        console.log(" --- window.b --- ", window.b);
+        sandbox.inactive();
+        console.log(" --- window.a --- ", window.a);
+        console.log(" --- window.b --- ", window.b);
+        sandbox.active();
+        console.log(" --- window.a --- ", window.a);
+        console.log(" --- window.b --- ", window.b);
+      })(sandbox.proxy);
+      // sandbox.proxy 就是window
+      // 如果是多个子应用就不能使用这种方式 es6的proxy
+
+      // 代理沙箱可以实现多应用沙箱，
+    </script>
+  </body>
+</html>
