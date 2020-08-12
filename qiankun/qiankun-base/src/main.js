@@ -7,7 +7,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import { registerMicroApps, start } from 'qiankun';
 
-
 const apps = [
   {
     name: 'vue app', // 应用的名字
