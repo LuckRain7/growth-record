@@ -30,9 +30,7 @@ dayjs().date(1)
 ### 查询
 
 ```javascript
-
-```
-
-```
-
+// 查询两个日期的先后顺序
+dayjs().isBefore(dayjs('2011-01-01')) // 默认毫秒
+dayjs().isAfter(dayjs('2011-01-01')) // 默认毫秒
 ```
