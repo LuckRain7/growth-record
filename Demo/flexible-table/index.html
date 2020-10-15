@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    *,
+    div {
+      padding: 0;
+      margin: 0;
+    }
+
+    .item {
+      height: 25px;
+    }
+
+    .bb {
+      border-bottom: solid 1.5px black;
+    }
+
+    .item-width {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>div</h1>
+  <table border="1" cellspacing="0">
+    <tr>
+      <th>阶段</th>
+      <th>异常分类</th>
+      <th>异常情况</th>
+      <th>异常情况描述</th>
+      <th>图片</th>
+    </tr>
+    <tr>
+      <td>一注</td>
+      <!-- 异常分类 -->
+      <td>
+        <div class="bb" style="height: 75px; text-align: center; line-height: 75px">
+          上架
+        </div>
+        <div style="height: 100px; text-align: center; line-height: 100px">
+          现蕾
+        </div>
+      </td>
+      <!-- 异常情况 -->
+      <td>
+        <div class="item bb">上架异常1</div>
+        <div class="item bb">上架异常2</div>
+        <div class="item bb">上架异常3</div>
+        <div class="item bb">现蕾异常1</div>
+        <div class="item bb">现蕾异常2</div>
+        <div class="item bb">现蕾异常3</div>
+        <div class="item bb">现蕾异常4</div>
+      </td>
+      <!-- 异常情况描述 -->
+      <td>
+        <div class="item bb item-width"></div>
+        <div class="item bb item-width"></div>
+        <div class="item bb item-width"></div>
+        <div class="item bb item-width"></div>
+        <div class="item bb item-width"></div>
+        <div class="item bb item-width"></div>
+        <div class="item bb item-width"></div>
+      </td>
+      <!-- 图片 -->
+      <td>
+        <div style="height: 175px; width: auto">
+          <img src="./卡通头像.png" style="height: 175px" />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>二注</td>
+      <td>$80</td>
+    </tr>
+  </table>
+
+  <h1>---------</h1>
+  <table border="1" cellspacing="0" id="myTable"></table>
+
+  <script>
+    let renderData = [
+      {
+        level: "一注",
+        img: './卡通头像.png',
+        category: [
+          {
+            name: "上架",
+            trouble: [
+              { name: "上架异常1", des: "上架异常1的描述" },
+              { name: "上架异常2", des: "上架异常2的描述" },
+              { name: "上架异常3", des: "上架异常3的描述" },
+              { name: "上架异常4", des: "上架异常4的描述" },
+              { name: "上架异常5", des: "上架异常4的描述" },
+              { name: "上架异常6", des: "上架异常4的描述" },
+            ],
+
+          },
+          {
+            name: "现蕾",
+            trouble: [
+              { name: "现蕾异常1", des: "现蕾异常1的描述" },
+              { name: "现蕾异常2", des: "现蕾异常2的描述" },
+              { name: "现蕾异常3", des: "现蕾异常3的描述" },
+            ],
+          },
+          {
+            name: "现蕾2",
+            trouble: [
+              { name: "现蕾2异常1", des: "现蕾异常1的描述" },
+              { name: "现蕾2异常2", des: "现蕾异常2的描述" },
+              { name: "现蕾2异常3", des: "现蕾异常3的描述" },
+            ],
+          },
+        ],
+      },
+      {
+        level: "二注",
+        img: './卡通头像.png',
+        category: [
+          {
+            name: "二注上架",
+            trouble: [
+              { name: "二注上架异常1", des: "二注上架异常1的描述" },
+              { name: "二注上架异常2", des: "二注上架异常2的描述" },
+              { name: "二注上架异常3", des: "二注上架异常3的描述" },
+            ],
+          },
+          {
+            name: "二注现蕾",
+            trouble: [
+              { name: "二注现蕾异常1", des: "二注现蕾异常1的描述" },
+              { name: "二注现蕾异常2", des: "二注现蕾异常2的描述" },
+              { name: "二注现蕾异常3", des: "二注现蕾异常3的描述" },
+            ],
+          },
+        ],
+      },
+    ];
+
+
+    const myTable = document.querySelector('#myTable')
+
+    let renderTemplate = ''
+    renderTemplate += `<tr>
+        <th>阶段</th>
+        <th>异常分类</th>
+        <th>异常情况</th>
+        <th>异常情况描述</th>
+        <th>图片</th>
+      </tr>
+      `
+
+    let troubleRender = ''
+    let troubleDesRender = ''
+
+    renderData.forEach(item => {
+      let troubleLength = 0 // 定义异常情况个数
+
+      let category = item.category
+      let categoryLength = category.length
+
+      let categoryRenderArr = category.map((item, index) => {
+        let trouble = item.trouble
+        troubleLength = trouble.length // 拿到异常情况个数
+
+        // 拼接异常情况
+        let troubleRenderArr = trouble.map((troubleItem, troubleIndex) => {
+          if (troubleIndex == troubleLength - 1 && index == categoryLength - 1) {
+            return `<div class="item">${troubleItem.name}</div>`
+          } else {
+            return `<div class="item bb">${troubleItem.name}</div>`
+          }
+        })
+
+        // 拼接异常情况描述
+        let troubleDesRenderArr = trouble.map((troubleItem, troubleIndex) => {
+          if (troubleIndex == troubleLength - 1 && index == categoryLength - 1) {
+            return `<div class="item  item-width">${troubleItem.des}</div>`
+          } else {
+            return `<div class="item bb item-width">${troubleItem.des}</div>`
+          }
+        })
+
+        troubleRender += troubleRenderArr.join('')
+        troubleDesRender += troubleDesRenderArr.join('')
+
+        // 异常分类的拼接
+        if (index == categoryLength - 1) {
+          return `
+          <div
+            style="height: ${troubleLength * 25}px; text-align: center; line-height: ${troubleLength * 25}px"
+          >
+            ${item.name}
+          </div>
+          `
+        } else {
+          return `
+          <div
+            class="bb"
+            style="height: ${troubleLength * 25}px; text-align: center; line-height: ${troubleLength * 25}px"
+          >
+            ${item.name}
+          </div>
+          `
+        }
+
+      })
+
+      let categoryRender = categoryRenderArr.join('')
+
+
+
+
+
+      renderTemplate += `
+        <tr>
+          <td>${item.level}</td>
+          <td>
+            ${categoryRender}
+          </td>
+          <td>
+            ${troubleRender}
+          </td>
+          <td>
+            ${troubleDesRender}
+          </td>
+          <td>
+            <div style="height: auto; width: auto">
+              <img src="${item.img}" style="height:50px;" />
+            </div>
+          </td>
+        </tr>
+        `
+
+      troubleRender = ''
+      troubleDesRender = ''
+    })
+
+    myTable.innerHTML = renderTemplate
+  </script>
+
+
+  <!-- 
+  1、最外层是一个table
+  2、有几个阶段 table下就生成几个tr
+  3、生成 对应阶段的异常分类
+
+
+
+ -->
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <br>
+
+</html>
