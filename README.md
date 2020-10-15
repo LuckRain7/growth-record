@@ -1,6 +1,6 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/frame)
 
-[[2020-10-15] 灵活渲染表格 DEMO]
+[[2020-10-15] 灵活渲染表格 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/flexible-table)
 
 [[2020-09-12] 使用 Node 发送邮件](https://github.com/LuckRain7/growth-record/tree/master/Demo/email-server-node)
 
