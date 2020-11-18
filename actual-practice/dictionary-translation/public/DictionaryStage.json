@@ -1,0 +1,14 @@
+[
+  {
+    "stage_name": "头潮",
+    "stage_id": "0"
+  },
+  {
+    "stage_name": "二潮",
+    "stage_id": "1"
+  },
+  {
+    "stage_name": "三潮",
+    "stage_id": "2"
+  }
+]

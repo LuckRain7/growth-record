@@ -1,0 +1,26 @@
+[
+  {
+    "key": "1",
+    "type_id": 0,
+    "type_txt": "大棒",
+    "stage_id": 0,
+    "stage_txt": "头潮",
+    "num": 100
+  },
+  {
+    "key": "2",
+    "type_id": 1,
+    "type_txt": "中棒",
+    "stage_id": 1,
+    "stage_txt": "二潮",
+    "num": 200
+  },
+  {
+    "key": "3",
+    "type_id": 2,
+    "type_txt": "小棒",
+    "stage_id": 2,
+    "stage_txt": "三潮",
+    "num": 300
+  }
+]

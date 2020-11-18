@@ -1,0 +1,31 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
+
+Vue.use(VueRouter)
+
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/Demo1',
+    name: 'Demo1',
+    component: () =>
+      import(/* webpackChunkName: "Demo1" */ '@/views/Demo1.vue'),
+  },
+  {
+    path: '/Demo2',
+    name: 'Demo2',
+    component: () =>
+      import(/* webpackChunkName: "Demo2" */ '@/views/Demo2.vue'),
+  },
+]
+
+const router = new VueRouter({
+  routes,
+})
+
+export default router

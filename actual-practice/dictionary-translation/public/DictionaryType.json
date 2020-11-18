@@ -1,0 +1,14 @@
+[
+  {
+    "type_name": "大棒",
+    "type_id": "0"
+  },
+  {
+    "type_name": "中棒",
+    "type_id": "1"
+  },
+  {
+    "type_name": "小棒",
+    "type_id": "2"
+  }
+]
