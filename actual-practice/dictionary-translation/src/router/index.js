@@ -34,4 +34,15 @@ const router = new VueRouter({
   routes,
 })
 
+router.beforeEach((to, from, next) => {
+  console.log(' --- to --- ', to)
+  console.log(' --- from --- ', from)
+
+  if (to.path == '/Demo2') {
+    next('/InitDemo')
+  } else {
+    next()
+  }
+})
+
 export default router

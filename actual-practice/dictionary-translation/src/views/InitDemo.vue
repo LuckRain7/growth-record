@@ -1,7 +1,7 @@
 <!--
  * @Author       : 震雨 LuckRain7
  * @Date         : 2020-11-17 16:49:31
- * @LastEditTime : 2020-11-19 21:34:09
+ * @LastEditTime : 2020-11-19 21:49:42
  * @Description  : 过滤器组件
  * @ 0 Error 0 Warning 0 Bug | Love and Peace
 -->
@@ -111,7 +111,7 @@ export default {
     getDictionaryType() {
       axios.get('/DictionaryType.json').then((res) => {
         const data = res.data
-        console.log(' --- data --- ', data)
+        // console.log(' --- data --- ', data)
         // {type_name: "大棒", type_id: "0"}
         // 1: {type_name: "中棒", type_id: "1"}
         // 2: {type_name: "小棒", type_id: "2"}
@@ -138,7 +138,7 @@ export default {
 
         this.dictionaryType = dictionaryType
 
-        console.log(' ---  dictionaryType --- ', dictionaryType)
+        // console.log(' ---  dictionaryType --- ', dictionaryType)
       })
     },
 
@@ -165,8 +165,8 @@ export default {
 
         this.dictionaryStage = dictionaryStage
 
-        console.log(' --- getDictionaryType res --- ', data)
-        console.log(' --- dictionaryStage --- ', dictionaryStage)
+        // console.log(' --- getDictionaryType res --- ', data)
+        // console.log(' --- dictionaryStage --- ', dictionaryStage)
       })
     },
 
@@ -180,13 +180,34 @@ export default {
 
     getRenderData() {
       axios.get('/data.json').then((res) => {
-        const data = res.data
-        this.renderData = data
+        let data = res.data
+        for (let i = 4; i < 50; i++) {
+          data.push({
+            key: i,
+            type_id: 1,
+            type_txt: '中棒  '+i,
+            stage_id: 1,
+            stage_txt: '二潮',
+            num: 200,
+          })
+        }
+
+        //  pageNo控制页数
+        //  pageSize 是控制每次请求的数据数量
+
+        //  pageSize=1000
+
+        // 100
+
+        // 2 5  6
+        // 2 10  11
+
+         this.renderData = data
       })
     },
 
     editMoadlOk() {
-      console.log(' --- this.editData --- ', this.editData)
+      // console.log(' --- this.editData --- ', this.editData)
 
       const editData = this.editData
 
