@@ -3,6 +3,7 @@
     <div id="nav">
       | <router-link to="/Demo1">Demo1</router-link> |
       <router-link to="/Demo2">Demo2</router-link> |
+      <router-link to="/InitDemo">InitDemo</router-link> |
     </div>
     <router-view />
   </div>
