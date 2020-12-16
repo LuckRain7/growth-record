@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canvas 二维码</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="120" height="40"> </canvas>
+
+    <script type="text/javascript">
+      // 随机数的生成函数
+      function rn(min, max) {
+        return parseInt(Math.random() * (max - min) + min);
+      }
+
+      // 随机生成颜色的函数
+      function rc(min, max) {
+        let r = rn(min, max);
+        let g = rn(min, max);
+        let b = rn(min, max);
+        return `rgb(${r},${g},${b})`;
+      }
+
+      function YZM(el, w, h) {
+        let canvas = document.querySelector(el);
+        let ctx = canvas.getContext("2d"); // 2D 画笔
+        // 绘制背景颜色
+        ctx.fillStyle = rc(180, 230);
+        ctx.fillRect(0, 0, w, h);
+
+        // 随机出字符串
+        let pool =
+          "AQWERTYUIOPLKJHGFDSAZXCVBNMqwertyuioplkjhgfdsazxcvbnm1234567890";
+
+        for (let i = 0; i < 4; i++) {
+          //  取出随机的字母或数字
+          let c = pool[rn(0, pool.length)];
+          // 随机出字体大小
+          let fs = rn(18, 40);
+          // 随机字母数字的旋转角度
+          let deg = rn(-30, 30);
+          ctx.font = fs + "px Simhei";
+          ctx.textBaseline = "top";
+          ctx.fillStyle = rc(80, 150);
+          ctx.save();
+          ctx.translate(30 * i + 15, 15);
+          ctx.rotate((deg * Math.PI) / 180); // 旋转
+          ctx.fillText(c, -10, -5);
+          ctx.restore();
+        }
+
+        // 随机生成干扰线
+
+        for (let i = 0; i < 5; i++) {
+          ctx.beginPath();
+          ctx.moveTo(rn(0, w), rn(0, h));
+          ctx.lineTo(rn(0, w), rn(0, h));
+          ctx.strokeStyle = rc(180, 230);
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        // 随机产生40个小圆点
+
+        for (let i = 0; i < 40; i++) {
+          ctx.beginPath();
+          ctx.arc(rn(0, w), rn(0, h), 1, 0, 2 * Math.PI);
+          ctx.closePath();
+          ctx.fillStyle = rc(150, 200);
+          ctx.fill();
+        }
+      }
+
+      let yzm = YZM("#canvas", 120, 40);
+    </script>
+  </body>
+</html>
