@@ -1,5 +1,7 @@
 ### 日常 DEMO | [框架 DEMO](https://github.com/LuckRain7/growth-record/tree/master/frame)
 
+[[2020-12-16] Canvas 生成验证码](https://github.com/LuckRain7/growth-record/tree/master/Demo/canvas-captcha)
+
 [[2020-11-18] 项目实战基础-字典翻译](https://github.com/LuckRain7/growth-record/tree/master/actual-practice/dictionary-translation)
 
 [[2020-10-15] 灵活渲染表格 DEMO](https://github.com/LuckRain7/growth-record/tree/master/Demo/flexible-table)
