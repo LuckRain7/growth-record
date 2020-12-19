@@ -2,6 +2,14 @@
 
 > vue 自定义指令
 
+## DEMO
+
+> [vue-custom-directives/src/Directives](https://github.com/LuckRain7/growth-record/blob/master/Vue-Demo/vue-custom-directives/src/Directives/index.js)
+
+- 防抖
+
+- 银行卡号间隔
+
 ## 钩子函数
 
 一个指令定义对象可以提供如下几个钩子函数 (均为可选)：
@@ -34,7 +42,3 @@
 - vnode：Vue 编译生成的虚拟节点。移步 VNode API 来了解更多详情。
 
 - oldVnode：上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用。
-
-## DEMO
-
-[vue-custom-directives/src/Directives]()
