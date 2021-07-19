@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpine.js Demo</title>
+  <!-- HHHHHHH -->
+  <link rel="icon" href="https://alpinejs.dev/favicon.png">
+  <link rel="stylesheet" href="./index.css">
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+  <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="11">
+    <h1>1. x-data</h1>
+    <div x-data="{ open: false, toggle() { this.open = !this.open } }">
+      <button @click="open = !open">Toggle Content</button>
+      <button @click="toggle">Toggle Content [@click="toggle"]</button>
+      <div x-show="open">
+        Content...
+      </div>
+    </div>
+    <!-- 使用 JavaScript 进行变量引入-->
+    <div x-data="js_init_data">
+      <p x-text="render"></p>
+    </div>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="22" x-data="{ render_data: '', init(){ console.log('hello world') } }">
+    <h1>2. x-init</h1>
+    <!-- 初始化事件 -->
+    <div x-init="setTimeout(()=>{ render_data = '初始化数据' }, 1000)">
+      <span x-text="render_data"></span>
+    </div>
+    <div x-init="$nextTick(() => { render_data = '$nextTick' })">
+      <span x-text="render_data"></span>
+    </div>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="x-show">
+    <h1>3. x-show</h1>
+    <div x-data="{ open: false }">
+      <button x-on:click="open = ! open">isShow??</button>
+      <div x-show="open" x-transition>
+        show Contents...
+      </div>
+    </div>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="x-bind">
+    <h1>4. x-bind</h1>
+    <div x-data="{ showYouContent: 'Type here...', init(){ this.render = 'hello world'} }">
+      <input type="text" x-bind:placeholder="showYouContent">
+      <input type="text" :placeholder="render">
+    </div>
+    <div x-data="x_bind()">
+      <button x-bind="trigger">Open Dropdown</button>
+
+      <span x-bind="dialogue">Dropdown Contents</span>
+    </div>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="x-effect">
+    <h1>5. x-effect</h1>
+    <div x-data="{ label: 'Hello', label2: 'Hello2' }" x-effect="console.log(label, label2)">
+      <button @click="label += ' +!'">Add + </button>
+      <button @click="label2 += ' x!'">Add x</button>
+      <p x-text="label + label2"></p>
+    </div>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="x-ref" x-data="{ data: {} }">
+    <h1>6. x-ref</h1>
+    <button @click="$refs.helloRef.remove()">Remove ↓ Text</button>
+    <p x-ref="helloRef">Hello 👋</p>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="x-cloak">
+    <h1>7. x-cloak</h1>
+    <div x-data="{ message: 'Hello World', error: ''}">
+      <span x-cloak x-text="message"></span>
+      <span x-cloak x-text="error"></span>
+    </div>
+  </div>
+
+  <!-- xxx -->
+  <div class="line"></div>
+  <div class="x-ignore">
+    <h1>8. x-ignore</h1>
+    <div x-data="{ label: 'From Alpine' }">
+      <div x-ignore>
+        <span x-text="label"></span>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./index.js"></script>
+
+</html>
