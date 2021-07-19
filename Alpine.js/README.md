@@ -56,7 +56,7 @@ Alpine.start()
 
 ## Other
 
-* DOM 外层必须要添加 x-data 属性
+DOM 外层必须要添加 x-data 属性
 
 alpine 加载监听事件
 
@@ -72,7 +72,7 @@ document.addEventListener('alpine:initialized', () => {
 })
 ```
 
-## menu
+## Menu
 
 ```text
 alpinejs
