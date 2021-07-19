@@ -58,7 +58,7 @@
 
 [[2020-04-19/20] JavaScript 执行顺序](https://github.com/LuckRain7/growth-record/tree/master/Demo/2020/04-19/)
 
-[[2020-04-17/18] VuePress 自动目录生成器（计划开源）](https://github.com/LuckRain7/growth-record/tree/master/Demo/node-fs)
+[[2020-04-17/18] VuePress 自动目录生成器](https://github.com/LuckRain7/growth-record/tree/master/Demo/node-fs)
 
 [[2020-04-15/16] Hexo](https://github.com/LuckRain7/blog)
 
@@ -68,7 +68,7 @@
 
 [[2020-04-11] TypeScript 学习](https://github.com/LuckRain7/growth-record/tree/master/Demo/TypeScript/basic)
 
-[[2020-04-09/10] vue-image-cropper 头像裁剪组件（计划开源）](https://github.com/LuckRain7/vue-image-cropper-simple)
+[[2020-04-09/10] vue-image-cropper 头像裁剪组件](https://github.com/LuckRain7/vue-image-cropper-simple)
 
 [[2020-04-08] loading 动画](https://github.com/LuckRain7/growth-record/tree/master/Demo/animation/loading)
 
